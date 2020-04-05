@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+.mainTable {
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 70vw;
+  height: 10vh;
+  th,
+  td,
+  table {
+    border: 1px solid blue;
+  }
+}
