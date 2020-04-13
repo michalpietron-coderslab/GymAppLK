@@ -5,13 +5,10 @@
 }
 
 .mainTable {
-  font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  width: 70vw;
-  height: 10vh;
-  th,
-  td,
-  table {
-    border: 1px solid blue;
+  buttn {
+    width: 100px;
+    height: 100px;
+    background-color: chartreuse;
   }
+  background-color: black;
 }

@@ -1,87 +1,87 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import Exercise from "./Components/exercise";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+// import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
 import "../scss/style.scss";
 import exercise from "./Components/exercise";
 
+class App extends Component {
+  render() {
+    return <Ex exercise={exercise} />;
+  }
+}
+
 class Ex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: [],
-      name: "",
+      list: [],
     };
   }
 
-  onSubmit = (event) => {
-    event.preventDefault();
-    console.log("działa button");
+  onAdd = (item) => {
     this.setState({
-      name: "",
-      id: [...this.state.id, this.state.name],
-      add: "",
+      list: [...this.state.list, item],
     });
   };
 
-  onChange = (event) => {
-    this.setState({ add: event.target.value });
-    console.log(add);
-  };
-
   render() {
-    console.log("option?" + this.state.add);
     return (
-      <div>
-        <Form onSubmit={this.onSubmit} onChange={this.onSubmit}>
-          <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label>Wszystkie ćwiczenia</Form.Label>
-            <Form.Control as="select" custom>
-              {this.props.Exercise.map((el) => (
-                <option
-                  value={this.state.name}
-                  key={el.id}
-                  onChange={this.onSubmit}
-                >
-                  {el.name}
-                </option>
-              ))}
-            </Form.Control>
-            <Button
-              value={this.state.name}
-              variant="dark"
-              type="submit"
-              // onChange={this.handleSubmit}
-            >
-              Wybierz
-            </Button>
-          </Form.Group>
-        </Form>
-      </div>
+      <>
+        <Exercise exercise={this.props.exercise} addClick={this.onAdd} />
+        <ExList list={this.state.list} />
+      </>
     );
   }
 }
 
-class App extends Component {
+class Exercise extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      add: "",
-    };
   }
 
   render() {
-    console.log("sprawdzam czy działa" + this.state.add);
+    const exList = this.props.exercise.map((el) => {
+      return (
+        <div className="mainTable">
+          <button
+            title={el.name}
+            key={el.id}
+            onClick={() => this.props.addClick(el.name)}
+            className="btn btn-primary"
+          >
+            {el.name}
+          </button>
+        </div>
+      );
+    });
+
     return (
-      <div>
-        <Ex Exercise={exercise} />
-      </div>
+      <>
+        <h1>Ćwiczenia</h1>
+        <div>{exList}</div>
+      </>
     );
   }
 }
 
-ReactDOM.render(<App Exercise={Exercise} />, document.getElementById("app"));
+class ExList extends Component {
+  render() {
+    return (
+      <>
+        <h1>Plan</h1>
+        <ul>
+          {this.props.list.map((item) => {
+            return <li key={item}>{item}</li>;
+          })}
+        </ul>
+      </>
+    );
+  }
+}
+
+ReactDOM.render(<App exercise={exercise} />, document.getElementById("app"));
