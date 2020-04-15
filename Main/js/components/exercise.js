@@ -1,4 +1,25 @@
-// export default [
+export default [
+  {
+    id: 1,
+    name: "Plecy",
+  },
+  {
+    id: 2,
+    name: "Nogi",
+  },
+  {
+    id: 3,
+    name: "Klatka piersiowa",
+  },
+  {
+    id: 4,
+    name: "Ramiona",
+  },
+  {
+    id: 5,
+    name: "Brzuch",
+  },
+]; // export default [
 //   {
 //     id: 1,
 //     name: "Rozpiętki w leżeniu na ławce płaskiej",
@@ -308,30 +329,3 @@
 //     name: "Wspięcia na palce siedząc",
 //   },
 // ];
-
-export default [
-  {
-    id: 1,
-    name: "Plecy",
-  },
-  {
-    id: 2,
-    name: "Dwugłowe nóg",
-  },
-  {
-    id: 3,
-    name: "Czworogłowe nóg",
-  },
-  {
-    id: 4,
-    name: "Klatka piersiowa",
-  },
-  {
-    id: 5,
-    name: "Ramiona",
-  },
-  {
-    id: 6,
-    name: "Brzuch",
-  },
-];

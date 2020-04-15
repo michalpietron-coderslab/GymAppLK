@@ -7,11 +7,19 @@ import Container from "react-bootstrap/Container";
 import { HashRouter, Route, Link, Switch, NavLink } from "react-router-dom";
 
 import "../scss/style.scss";
-import exercise from "./Components/exercise";
+import exercise from "./components/exercise";
+import ExC from "./components/ExC";
+import nogi from "./components/nogi";
 
 class App extends Component {
   render() {
-    return <Ex exercise={exercise} />;
+    return (
+      <HashRouter>
+        <Ex exercise={exercise} />
+        <Route exact path="/" component={Exercise} />
+        <Route path="/exercises/" component={ExC} />
+      </HashRouter>
+    );
   }
 }
 
@@ -34,6 +42,7 @@ class Ex extends Component {
       <>
         <Exercise exercise={this.props.exercise} addClick={this.onAdd} />
         <ExList list={this.state.list} />
+        <Nogi nogi={nogi} />
       </>
     );
   }
@@ -47,7 +56,7 @@ class Exercise extends Component {
   render() {
     const exList = this.props.exercise.map((el) => {
       return (
-        <div className="mainTable">
+        <div className="mainTable" key={el.id}>
           <button
             title={el.name}
             key={el.id}
@@ -56,6 +65,7 @@ class Exercise extends Component {
           >
             {el.name}
           </button>
+          <Link to={"/exercises/:" + el.name}> {el.name}</Link>
         </div>
       );
     });
@@ -68,6 +78,36 @@ class Exercise extends Component {
     );
   }
 }
+class Nogi extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const nogii = this.props.nogi.map((ele) => {
+      return (
+        <div className="mainTable" key={ele.id}>
+          <button
+            title={ele.name}
+            key={ele.id}
+            onClick={() => this.props.addClick(ele.name)}
+            className="btn btn-primary"
+          >
+            {ele.name}
+          </button>
+          {/* <Link to={"/exercises/:" + el.name}> {el.name}</Link> */}
+        </div>
+      );
+    });
+
+    return (
+      <>
+        <h1>Ćwiczenia</h1>
+        <div>{nogii}</div>
+      </>
+    );
+  }
+}
 
 class ExList extends Component {
   render() {
@@ -75,8 +115,8 @@ class ExList extends Component {
       <>
         <h1>Plan</h1>
         <ul>
-          {this.props.list.map((item) => {
-            return <li key={item}>{item}</li>;
+          {this.props.list.map((item, index) => {
+            return <li key={index}>{item}</li>;
           })}
         </ul>
       </>
@@ -84,4 +124,7 @@ class ExList extends Component {
   }
 }
 
-ReactDOM.render(<App exercise={exercise} />, document.getElementById("app"));
+ReactDOM.render(
+  <App exercise={exercise} nogi={nogi} />,
+  document.getElementById("app")
+);
