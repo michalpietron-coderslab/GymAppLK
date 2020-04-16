@@ -3,17 +3,16 @@ import ReactDOM from "react-dom";
 
 import { Link } from "react-router-dom";
 
-export default class Nogi extends Component {
+export default class Klatka extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const nogiEx = this.props.nogi.map((ele) => {
+    const klatkaEx = this.props.klatka.map((ele) => {
       return (
         <div className="mainTable" key={ele.id}>
           <button
-            title={ele.name}
             key={ele.id}
             onClick={() => this.props.addClick(ele.name)}
             className="btn btn-primary"
@@ -26,8 +25,8 @@ export default class Nogi extends Component {
 
     return (
       <>
-        <h1>Ćwiczenia na nogi</h1>
-        <div>{nogiEx}</div>
+        <h1>Ćwiczenia na klatkę piersiową</h1>
+        <div>{klatkaEx}</div>
       </>
     );
   }

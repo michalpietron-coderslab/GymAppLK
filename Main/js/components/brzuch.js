@@ -1,46 +1,34 @@
-export default [
-  {
-    id: 1,
-    name: "Plank klasyczny",
-  },
-  {
-    id: 2,
-    name: "`Kółeczko` z siedzenia",
-  },
-  {
-    id: 3,
-    name: "`Kółeczko` ze stania",
-  },
-  {
-    id: 4,
-    name: "Unoszenie nóg w leżeniu/siedzeniu na ławce",
-  },
-  {
-    id: 5,
-    name: "Unoszenie nóg w zwisie na drążku",
-  },
-  {
-    id: 6,
-    name: "Allahy stojąc/klęcząc",
-  },
-  {
-    id: 7,
-    name: "Hollow body",
-  },
-  {
-    id: 8,
-    name: "Hollow body z hantlem",
-  },
-  {
-    id: 9,
-    name: "Paloff press",
-  },
-  {
-    id: 10,
-    name: "Woodchooper",
-  },
-  {
-    id: 11,
-    name: "Plank boczny",
-  },
-];
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+
+import { Link } from "react-router-dom";
+
+export default class Brzuch extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const brzuchEx = this.props.brzuch.map((ele) => {
+      return (
+        <div className="mainTable" key={ele.id}>
+          <button
+            title={ele.name}
+            key={ele.id}
+            onClick={() => this.props.addClick(ele.name)}
+            className="btn btn-primary"
+          >
+            {ele.name}
+          </button>
+        </div>
+      );
+    });
+
+    return (
+      <>
+        <h1>Ćwiczenia na brzuch</h1>
+        <div>{brzuchEx}</div>
+      </>
+    );
+  }
+}
