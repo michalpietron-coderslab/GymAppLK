@@ -23,6 +23,12 @@ import Ramiona from "./components/ramiona";
 import ramiona from "./components/listOfexercises/ramiona";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: [],
+    };
+  }
   render() {
     return (
       <HashRouter>
@@ -99,7 +105,19 @@ class Exercise extends Component {
 export default class ExList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      list: [],
+    };
+    this.removeExercise = this.removeExercise.bind(this);
   }
+
+  removeExercise = (index) => {
+    console.log("najpierw masa a potem masa" + index);
+    const array = this.state.list;
+    array.splice(index, 1);
+    this.setState({ list: array });
+  };
+
   render() {
     return (
       <>
@@ -107,9 +125,11 @@ export default class ExList extends Component {
         <ul>
           {this.props.list.map((item, index) => {
             return (
-              <li key={index}>
+              <li key={index} index={index}>
                 {item}
-                <button>delete</button>
+                <button onClick={() => this.removeExercise(index)}>
+                  delete
+                </button>
               </li>
             );
           })}

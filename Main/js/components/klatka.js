@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 export default class Klatka extends Component {
   constructor(props) {
     super(props);
+    this.state = { showMe: true };
   }
-
+  showK = () => {
+    this.setState({ showMe: !this.state.showMe });
+  };
   render() {
     const klatkaEx = this.props.klatka.map((ele) => {
       return (
@@ -26,7 +29,10 @@ export default class Klatka extends Component {
     return (
       <>
         <h1>Ćwiczenia na klatkę piersiową</h1>
-        <div>{klatkaEx}</div>
+        <button onClick={this.showK}>toggle</button>
+        <>
+          {this.state.showMe ? <div>{klatkaEx}</div> : <h1>Pokaż ćwiczenia</h1>}
+        </>
       </>
     );
   }

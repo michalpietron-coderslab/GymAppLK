@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 export default class Ramiona extends Component {
   constructor(props) {
     super(props);
+    this.state = { showMe: true };
   }
-
+  showR = () => {
+    this.setState({ showMe: !this.state.showMe });
+  };
   render() {
     const ramionaEx = this.props.ramiona.map((ele) => {
       return (
@@ -27,7 +30,16 @@ export default class Ramiona extends Component {
     return (
       <>
         <h1>Ćwiczenia na ramiona</h1>
-        <div>{ramionaEx}</div>
+        <button className="btn btn-primary" onClick={this.showR}>
+          toggle
+        </button>
+        <>
+          {this.state.showMe ? (
+            <div>{ramionaEx}</div>
+          ) : (
+            <h1>Pokaż ćwiczenia</h1>
+          )}
+        </>
       </>
     );
   }

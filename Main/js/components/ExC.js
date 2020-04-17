@@ -15,7 +15,7 @@ export default class ExC extends Component {
   render() {
     return (
       <>
-        <p>dupa</p>
+        <p></p>
         <Exercise list={this.state.list} />
       </>
     );

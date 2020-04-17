@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 export default class Plecy extends Component {
   constructor(props) {
     super(props);
+    this.state = { showMe: true };
   }
-
+  showP = () => {
+    this.setState({ showMe: !this.state.showMe });
+  };
   render() {
     const plecyEx = this.props.plecy.map((ele) => {
       return (
@@ -27,7 +30,10 @@ export default class Plecy extends Component {
     return (
       <>
         <h1>Ćwiczenia na plecy</h1>
-        <div>{plecyEx}</div>
+        <button onClick={this.showP}>toggle</button>
+        <>
+          {this.state.showMe ? <div>{plecyEx}</div> : <h1>Pokaż ćwiczenia</h1>}
+        </>
       </>
     );
   }
