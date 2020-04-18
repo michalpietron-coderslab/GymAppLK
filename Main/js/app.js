@@ -10,8 +10,8 @@ import ExC from "./components/ExC";
 import Nogi from "./components/nogi";
 import nogi from "./components/listOfexercises/nogi";
 
-import plecy from "./components/listOfexercises/plecy";
 import Plecy from "./components/plecy";
+import plecy from "./components/listOfexercises/plecy";
 
 import Brzuch from "./components/brzuch";
 import brzuch from "./components/listOfexercises/brzuch";
@@ -77,26 +77,18 @@ class Exercise extends Component {
   }
 
   render() {
-    // const exl = exercise.map((el) => {
-    //   return (
-    //     <div className="mainTable" key={el.id}>
-    //       {/* <button
-    //         title={el.name}
-    //         key={el.id}
-    //         onClick={() => this.props.addClick(el.name)}
-    //         className="btn btn-primary"
-    //       >
-    //         {el.name}
-    //       </button> */}
-    //       <Link to={"/exercises/" + el.name}> {el.name}</Link>
-    //     </div>
-    //   );
-    // });
+    const exl = exercise.map((el) => {
+      return (
+        <div className="mainTable" key={el.id}>
+          <Link to={"/exercises/" + el.name}> {el.name}</Link>
+        </div>
+      );
+    });
 
     return (
       <>
         <h1>Ćwiczenia</h1>
-        {/* <div>{exl}</div> */}
+        <div>{exl}</div>
       </>
     );
   }
@@ -125,7 +117,7 @@ export default class ExList extends Component {
         <ul>
           {this.props.list.map((item, index) => {
             return (
-              <li key={index} index={index}>
+              <li className="coś" key={index} index={index}>
                 {item}
                 <button onClick={() => this.removeExercise(index)}>
                   delete
